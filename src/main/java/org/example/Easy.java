@@ -3,6 +3,7 @@ package org.example;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 
 public class Easy {
   // 1
@@ -68,6 +69,20 @@ public class Easy {
     }
 
     return longestPrefix.toString();
+  }
+
+  // 20
+  public boolean isValid(String s) {
+    Stack<Character> stack = new Stack<>();
+
+    for (char c : s.toCharArray()) {
+      if (c == '(') stack.push(')');
+      else if (c == '[') stack.push(']');
+      else if (c == '{') stack.push('}');
+      else if (stack.isEmpty() || stack.pop() != c) return false;
+    }
+
+    return stack.isEmpty();
   }
 
   // for tests
