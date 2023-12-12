@@ -1,6 +1,7 @@
 package org.example;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Easy {
   // 1
@@ -27,6 +28,29 @@ public class Easy {
     }
 
     return reversed == x;
+  }
+
+  // 13
+  public int romanToInt(String s) {
+    Map<Character, Integer> romanLetters = new HashMap<>();
+    romanLetters.put('I', 1);
+    romanLetters.put('V', 5);
+    romanLetters.put('X', 10);
+    romanLetters.put('L', 50);
+    romanLetters.put('C', 100);
+    romanLetters.put('D', 500);
+    romanLetters.put('M', 1000);
+
+    int result = 0;
+    int prevValue = 0;
+    for (int i = s.length() - 1; i >= 0; i--) {
+      int currentValue = romanLetters.get(s.charAt(i));
+      if (currentValue < prevValue) result -= currentValue;
+      else result += currentValue;
+      prevValue = currentValue;
+    }
+
+    return result;
   }
 
   // for tests
