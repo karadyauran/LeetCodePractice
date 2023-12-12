@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,6 +52,22 @@ public class Easy {
     }
 
     return result;
+  }
+
+  // 14
+  public String longestCommonPrefix(String[] str) {
+    StringBuilder longestPrefix = new StringBuilder();
+    Arrays.sort(str);
+
+    String first = str[0];
+    String last = str[str.length - 1];
+
+    for (int i = 0; i < first.length(); i++) {
+      if (first.charAt(i) != last.charAt(i)) return longestPrefix.toString();
+      longestPrefix.append(first.charAt(i));
+    }
+
+    return longestPrefix.toString();
   }
 
   // for tests
