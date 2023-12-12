@@ -134,8 +134,19 @@ public class Easy {
     return i;
   }
 
+  // 28
+  public static int strStr(String haystack, String needle) {
+    if (!haystack.contains(needle)) return -1;
+
+    for (int i = 0; i <= haystack.length() - needle.length(); i++) {
+      if (haystack.startsWith(needle, i)) return i;
+    }
+
+    return 0;
+  }
+
   // for tests
   public static void main(String[] args) {
-
+    strStr("mississippi", "issip");
   }
 }
