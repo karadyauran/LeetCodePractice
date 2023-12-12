@@ -110,6 +110,18 @@ public class Easy {
     return head.next;
   }
 
+  // 26
+  public int removeDuplicates(int[] nums) {
+    if (nums.length == 0) return 0;
+
+    int counter = 0;
+    for (int i = 1; i < nums.length; i++) {
+      if (nums[counter] != nums[i]) nums[++counter] = nums[i];
+    }
+
+    return counter + 1;
+  }
+
   // for tests
   public static void main(String[] args) {
 
