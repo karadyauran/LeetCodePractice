@@ -63,6 +63,22 @@ public class Medium {
     return range;
   }
 
+
+  // 167
+  public static int[] twoSum(int[] numbers, int target) {
+    int l = 0;
+    int r = numbers.length - 1;
+
+    while (l <= r) {
+      if (numbers[l] + numbers[r] == target) return new int[]{++l, ++r};
+
+      if (numbers[l] + numbers[r] > target) r--;
+      else l++;
+    }
+
+    return new int[0];
+  }
+
   public static void main(String[] args) {
 
   }
