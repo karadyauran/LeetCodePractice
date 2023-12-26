@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -103,8 +105,45 @@ public class Medium {
     return maxSequence / heaters.length;
   }
 
+  // 147
+
+  // 17
+  public void buildMap(HashMap<Character, String> numbersMap) {
+    numbersMap.put('2', "abc");
+    numbersMap.put('3', "def");
+    numbersMap.put('4', "ghi");
+    numbersMap.put('5', "jkl");
+    numbersMap.put('6', "mno");
+    numbersMap.put('7', "pqrs");
+    numbersMap.put('8', "tuv");
+    numbersMap.put('9', "wxyz");
+  }
+
+  public void backtrack(int len, String digits, HashMap<Character, String> numbersMap, String temp, List<String> result, int idx) {
+    if (temp.length() == len) {
+      result.add(temp);
+      return;
+    }
+
+    for (int i = 0; i < numbersMap.get(digits.charAt(idx)).length(); i++) {
+      temp = temp + numbersMap.get(digits.charAt(idx)).charAt(i);
+      backtrack(len, digits, numbersMap, temp, result, idx + 1);
+      temp = temp.substring(0, temp.length() - 1);
+    }
+  }
+
+  public List<String> letterCombinations(String digits) {
+    List<String> result = new ArrayList<>();
+    HashMap<Character, String> numbersMap = new HashMap<>();
+    buildMap(numbersMap);
+
+    if (digits.isEmpty()) return result;
+
+    backtrack(digits.length(), digits, numbersMap, "", result, 0);
+    return result;
+  }
+
   public static void main(String[] args) {
-    int[] houses = new int[]{ 1, 1, 1, 1, 1, 1, 999, 999, 999, 999, 999 };
-    int[] heaters = new int[]{ 499, 500, 501 };
+
   }
 }
