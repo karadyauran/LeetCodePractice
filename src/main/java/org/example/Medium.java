@@ -1,6 +1,7 @@
 package org.example;
 
-import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 public class Medium {
   // 2289
@@ -22,7 +23,7 @@ public class Medium {
 
   // 34
   public static int[] searchRange(int[] nums, int target) {
-    if (nums.length < 1) return new int[]{-1, -1};
+    if (nums.length < 1) return new int[]{ -1, -1 };
 
     int left = 0;
     int right = nums.length - 1;
@@ -32,13 +33,13 @@ public class Medium {
     while (left <= right) {
       int mid = left + (right - left) / 2;
       if (nums[mid] == target) index = mid;
-      if(nums[mid] < target) left = mid + 1;
+      if (nums[mid] < target) left = mid + 1;
       else right = mid - 1;
     }
 
-    if (index == -1) return new int[]{-1, -1};
+    if (index == -1) return new int[]{ -1, -1 };
 
-    int[] range = new int[]{index, index};
+    int[] range = new int[]{ index, index };
 
     int i = index;
     while (i != 0) {
@@ -70,7 +71,7 @@ public class Medium {
     int r = numbers.length - 1;
 
     while (l <= r) {
-      if (numbers[l] + numbers[r] == target) return new int[]{++l, ++r};
+      if (numbers[l] + numbers[r] == target) return new int[]{ ++l, ++r };
 
       if (numbers[l] + numbers[r] > target) r--;
       else l++;
@@ -79,7 +80,31 @@ public class Medium {
     return new int[0];
   }
 
-  public static void main(String[] args) {
+  // 475
+  public int findRadius(int[] houses, int[] heaters) {
+    int max = Math.max(houses[houses.length - 1], heaters[heaters.length - 1]);
+    int[] warm = new int[max];
 
+    for (int heater : heaters) {
+      warm[heater - 1] = 1;
+    }
+
+    int maxSequence = 0;
+    int temp = 0;
+    for (int i = 0; i < max; i++) {
+      if (warm[i] == 0) temp++;
+      if (warm[i] != 0 || i == max - 1) {
+        maxSequence = Math.max(maxSequence, temp);
+        temp = 0;
+      }
+    }
+
+    if (heaters.length % 2 == 1) return maxSequence;
+    return maxSequence / heaters.length;
+  }
+
+  public static void main(String[] args) {
+    int[] houses = new int[]{ 1, 1, 1, 1, 1, 1, 999, 999, 999, 999, 999 };
+    int[] heaters = new int[]{ 499, 500, 501 };
   }
 }
