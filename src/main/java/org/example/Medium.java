@@ -1,5 +1,9 @@
 package org.example;
 
+import org.example.additionals.ListNode;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -141,6 +145,29 @@ public class Medium {
 
     backtrack(digits.length(), digits, numbersMap, "", result, 0);
     return result;
+  }
+
+  // 82
+  public ListNode deleteDuplicates(ListNode head) {
+    ListNode dummy = new ListNode(-1);
+    ListNode tail = dummy;
+
+    int lastValue = -1;
+    while (head != null) {
+      int curr = head.val;
+      int next = head.next != null ? head.next.val : -1;
+
+      if (curr != next && curr != lastValue) {
+        tail.next = new ListNode(curr);
+        tail = tail.next;
+      }
+
+      lastValue = curr;
+
+      head = head.next;
+    }
+
+    return dummy.next;
   }
 
   public static void main(String[] args) {
