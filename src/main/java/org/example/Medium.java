@@ -192,7 +192,36 @@ public class Medium {
     return dummy;
   }
 
-  public static void main(String[] args) {
+  // 2452
+  public static long makeIntegerBeautiful(long n, int target) {
+    if (n < target) return 0;
 
+    long temp = n;
+    long sum = calculateSum(n);
+    long numberToAdd = 1;
+
+    while (sum > target) {
+      temp = temp / 10 + 1;
+      numberToAdd *= 10;
+      sum = calculateSum(temp);
+    }
+
+    return temp * numberToAdd - n;
+  }
+
+  private static long calculateSum(long number) {
+    long sum = 0;
+
+    while (number > 0) {
+      long digit = number % 10;
+      sum += digit;
+      number /= 10;
+    }
+
+    return sum;
+  }
+
+  public static void main(String[] args) {
+    System.out.println(makeIntegerBeautiful(16, 6));
   }
 }
