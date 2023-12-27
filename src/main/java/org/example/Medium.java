@@ -2,12 +2,7 @@ package org.example;
 
 import org.example.additionals.ListNode;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Medium {
   // 2289
@@ -168,6 +163,14 @@ public class Medium {
     }
 
     return dummy.next;
+  }
+
+  // 215
+  public int findKthLargest(int[] nums, int k) {
+    Arrays.sort(nums);
+    int[] distinct = Arrays.stream(nums).distinct().toArray();
+    System.out.println(Arrays.toString(distinct));
+    return distinct[distinct.length - k];
   }
 
   public static void main(String[] args) {
