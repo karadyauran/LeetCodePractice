@@ -104,8 +104,6 @@ public class Medium {
     return maxSequence / heaters.length;
   }
 
-  // 147
-
   // 17
   public void buildMap(HashMap<Character, String> numbersMap) {
     numbersMap.put('2', "abc");
@@ -171,6 +169,27 @@ public class Medium {
     int[] distinct = Arrays.stream(nums).distinct().toArray();
     System.out.println(Arrays.toString(distinct));
     return distinct[distinct.length - k];
+  }
+
+  // 147
+  public ListNode insertionSortList(ListNode head) {
+    List<Integer> numbers = new ArrayList<>();
+    while (head != null) {
+      numbers.add(head.val);
+      head = head.next;
+    }
+
+    Collections.sort(numbers);
+
+    ListNode dummy = new ListNode();
+    ListNode tail = dummy;
+
+    for (int num : numbers) {
+      tail.next = new ListNode(num);
+      tail = tail.next;
+    }
+
+    return dummy;
   }
 
   public static void main(String[] args) {
